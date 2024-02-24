@@ -1,0 +1,16 @@
+# Configure main menu and social menu
+[[social]]
+identifier = "github"
+name = "GitHub"
+url = "https://github.com/stephankoe"
+
+[social.params]
+icon = "brand-github"
+
+[[social]]
+identifier = "mastodon"
+name = "Mastodon"
+url = "https://mastodon.social/@durchaus"
+
+[social.params]
+icon = "brand-mastodon"

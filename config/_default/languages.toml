@@ -1,0 +1,27 @@
+[en]
+languageName = "🇬🇧 English"
+languageCode = "en-GB"
+languagedirection = "ltr"
+title = "Stephan's Blog"
+weight = 1
+
+[en.params.sidebar]
+subtitle = "Notes on various topics regarding AI, distributed computing, Linux and application development"
+
+
+[de]
+languageName = "🇩🇪 Deutsch"
+languageCode = "de-DE"
+languagedirection = "ltr"
+title = "Stephans Blog"
+weight = 1
+
+[de.params.sidebar]
+subtitle = "Notizen rund um Themen aus der KI, dem verteilten Rechnen, Linux und Anwendungsentwicklung"
+
+[de.params.article.license]
+default = "Lizensiert unter CC BY-NC-SA 4.0"
+
+[de.params.dateFormat]
+published = "02.01.2006"
+lastUpdated = "02.01.2006 15:04 MST"

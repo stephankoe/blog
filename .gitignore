@@ -1,0 +1,6 @@
+.hugo_build.lock
+hugo.exe
+hugo.darwin
+hugo.linux
+public/
+resources/

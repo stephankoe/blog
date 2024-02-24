@@ -1,0 +1,28 @@
+/* Invert the colors of images in dark theme */
+
+html[data-scheme="dark"] img:not(.site-logo) {
+  filter: invert(100%);
+}
+
+/* Automatic hyphenation */
+
+html * {
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+}
+
+/* Bibliography */
+
+.csl-entry:target {
+    font-weight: bold;
+}
+
+.hanging-indent {
+    text-indent: -1.2em;
+}
+
+ul.hanging-indent {
+    list-style-type: none;
+    padding: 0 0 0 1.2em;
+}
