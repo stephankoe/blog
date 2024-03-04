@@ -181,6 +181,6 @@ systemctl --user enable --now ssh-agent
 
 This solution was proposed in [StackExchange Unix&Linux](https://unix.stackexchange.com/a/390631).
 
-## Safety Considerations
+## IT Security Considerations
 
 To minimize the possibility of misuse, it is recommended to configure a timeout for the keys. The applications `ssh-agent` and `ssh-add` offer the option `-t` with which the user can set a time in seconds that the unlocked keys should remain in memory.
