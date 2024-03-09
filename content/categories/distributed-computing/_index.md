@@ -1,6 +1,6 @@
 ---
 title: "Distributed Computing"
-description: ""
+description: "Distributed computing is the collaboration of multiple, interconnected machines in a computing task. Thereby, the computing task is divided into multiple sub-tasks that are ideally solved by each device independently and later combined to create the final result."
 image:
 
 # Badge style
