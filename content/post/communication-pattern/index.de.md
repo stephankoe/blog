@@ -2,7 +2,7 @@
 title: "Kommunikationsmuster"
 description: "Beschreibung häufig genutzter Kommunikationsmuster im verteilten Rechnen"
 date: 2024-03-03T12:56:52+08:00
-image: 
+image: cover.jpg
 math: true
 categories:
   - distributed-computing
