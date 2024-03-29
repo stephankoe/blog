@@ -27,16 +27,22 @@ function my_command {
 }
 ```
 
+We can achieve this behavior by introducing a function `write_log` that takes the input from stdin and `tee`s it into a file if `$PDEBUG` is truthy. This function requires a filepath where it writes the results into. Finally, we simply pipe the result of `my_command` into `write_log`.
+
+To write the text on stderr into another file, we also can use `write_log`, but we have to redirect the error stream with into the stdin of a subshell with `2> >(...)`. Inside the subshell, we simply launch `write_log run.err` and redirect its output again to its error stream. This redirection is needed because the error stream from `my_command` was routed into the stdin of the subshell, which prints the input onto the stdout stream of the subshell via `tee`. So, we need `>&2` to avoid mixing stdout and stderr.
+
+Inside the function `write_log`, we initiate an empty Bash array `$tee_args` and add the file path to it when `$PDEBUG` is truthy. Then, the array `$tee_args` is given to `tee` as argument. The advantage of using an array instead of a simple Bash variable here is that Bash automatically ensures proper quotation and escaping of the content of the array when expanded with "${tee_args[@]}".
+
+The resulting code looks like the following:
+
 ```bash
 PDEBUG="${PDEBUG:-"$1"}"  # debug-mode on/off
-LOG_DIR="${LOG_DIR:-"log"}"
 
 function write_log {
-    filename="${1?"Filename required!"}"
+    filepath="${1?"File path required!"}"
     tee_args=()
     if "${PDEBUG}"; then
-        mkdir -p "${LOG_DIR}"
-        tee_args+=("${LOG_DIR}/${filename}")
+        tee_args+=("${filepath}")
     fi
     tee "${tee_args[@]}"
 }
