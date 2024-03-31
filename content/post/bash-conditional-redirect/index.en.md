@@ -2,7 +2,7 @@
 title: "Conditional Redirection in Bash Scripts"
 description: "How to route the output of a command in Bash into a file only when a condition is met?"
 date: 2024-03-27T17:42:52+08:00
-image: 
+image: cover.jpg
 math: false
 categories:
   - bash

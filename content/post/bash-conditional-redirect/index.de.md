@@ -2,7 +2,7 @@
 title: "Bedingte Umleitung der Kommando-Ausgabe in Bash-Skripten"
 description: "Wie kann man die Ausgabe eines Kommandos in Bash in eine Datei umleiten, wenn eine Bedingung erfüllt ist?"
 date: 2024-03-27T17:42:52+08:00
-image: 
+image: cover.jpg
 math: false
 categories:
   - bash
