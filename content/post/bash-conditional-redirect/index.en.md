@@ -63,7 +63,9 @@ my_command \
 
 [^expl]: `2>` redirects stderr, `(...)` creates a new sub-shell that runs `...` and the second `>` redirects the input into the stdin of the sub-shell.
 
-To achieve conditional redirection within `write_log`, we use `tee` in combination with parameter expansion of Bash arrays. We first initiate an empty Bash array `$tee_args` and append the file path if `$PDEBUG` is truthy. Then, we run `tee "${tee_args[@]}"`. `"${tee_args[@]}"` expands the array contents and ensures proper quoting of each array element, so filenames with spaces and even Bash code don't pose problems.
+To achieve conditional redirection within `write_log`, we use `tee`[^tee] in combination with parameter expansion of Bash arrays. We first initiate an empty Bash array `$tee_args` and append the file path if `$PDEBUG` is truthy. Then, we run `tee "${tee_args[@]}"`. `"${tee_args[@]}"` expands the array contents and ensures proper quoting of each array element, so filenames with spaces and even Bash code don't pose problems.
+
+[^tee]: The name `tee` is derived from the T piece of a tube, and it works accordingly: the input is forwarded to two destinations. Normally, but not necessarily, one of these destinations is the standard output, the other a file.
 
 Putting it all together, the final code looks as follows:
 
