@@ -1,7 +1,7 @@
 /* Invert the colors of images in dark theme */
 
 html[data-scheme="dark"] img:not(.site-logo) {
-  filter: invert(100%);
+  filter: invert(73.828125%);
 }
 
 /* Automatic hyphenation */
