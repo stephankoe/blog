@@ -38,7 +38,7 @@ In a *Reduce* operation, all participating processes send their data to a certai
 
 During the course of an *All Reduce* operation, every process sends its data to every other process. Then, upon receiving the data from all other processes, every process applies a reduction operation to the data of all processes, including its own data, and overwrite their respective previous datum with the result of this operation. After the operation, every process stores the same data.
 
-![The image shows two rows. The above one is labeled with before, the below one with after. Every row contains n processes with a datum x_i each. The datum of process 1 is x_1 before the operation, the data of the other processes is given with x_2 to x_n. There is a dashed line from each process in the above row to every process in the below row. The lines are labeled with AllReduce_sum. The data of every process in the below row is x_1 + x_2 + ... + x_n.](./img/mpi-all-reduce.svg)
+![The image shows two rows. The above one is labeled with before, the below one with after. Every row contains n processes with a datum x_i each. The datum of process 1 is x_1 before the operation, the data of the other processes is given with x_2 to x_n. There is a dashed line from each process in the above row to every process in the below row. The lines are labeled with AllReduce_sum. The data of every process in the below row is x_1 + x_2 + ... + x_n.](img/mpi-all-reduce.svg)
 
 : Example for an All Reduce operation: All processes exchange their data and sum them up individually. After the operation, every process has the same result in memory.
 
