@@ -1,3 +1,10 @@
+@import "fonts.scss";
+
+:root {
+    --base-font-family: "Nunito", sans-serif;
+    --code-font-family: "Ubuntu Mono", monospace;
+}
+
 /* Invert the colors of images in dark theme */
 
 html[data-scheme="dark"] img:not(.site-logo) {
