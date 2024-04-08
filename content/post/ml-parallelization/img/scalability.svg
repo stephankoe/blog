@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="92.004204mm"
+   height="85.761353mm"
+   viewBox="0 0 92.004202 85.761353"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="Parallelierung-Effizienz.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.829812"
+     inkscape:cx="51.098145"
+     inkscape:cy="184.44518"
+     inkscape:window-width="1876"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible"
+       id="marker1121"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="TriangleStart"
+       markerWidth="5.3244081"
+       markerHeight="6.155385"
+       viewBox="0 0 5.3244081 6.1553851"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path1119" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="TriangleStart"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="TriangleStart"
+       markerWidth="5.3244081"
+       markerHeight="6.155385"
+       viewBox="0 0 5.3244081 6.1553851"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-46.348081,-25.206289)">
+    <path
+       style="fill:#ffd5d5;fill-opacity:1;stroke:none;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="M 57.548253,105.53694 131.87801,31.207188 v 74.329752 z"
+       id="path1528"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:#d9e7aa;fill-opacity:1;stroke:none;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="M 57.548253,105.53694 131.87801,31.207188 H 57.548254 Z"
+       id="path1526"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;marker-start:url(#marker1121);marker-end:url(#TriangleStart)"
+       d="M 136.57675,105.53694 H 57.548254 V 26.981823"
+       id="path236"
+       sodipodi:nodetypes="ccc" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.9389px;font-family:sans;-inkscape-font-specification:sans;text-align:center;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:4.99999;stroke-dashoffset:0"
+       x="94.488701"
+       y="110.74786"
+       id="text1458"><tspan
+         sodipodi:role="line"
+         id="tspan1456"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;fill:#000000;stroke:none;stroke-width:0.5"
+         x="94.488701"
+         y="110.74786">P</tspan></text>
+    <path
+       style="fill:none;stroke:#008000;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="M 57.548253,105.53694 110.71135,31.207188"
+       id="path1462"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.9389px;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;text-align:center;text-anchor:middle;fill:#008000;stroke:none;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:4.99999;stroke-dashoffset:0"
+       x="55.090878"
+       y="113.67913"
+       id="text1520"
+       transform="rotate(-45)"><tspan
+         sodipodi:role="line"
+         id="tspan1518"
+         style="fill:#008000;stroke:none;stroke-width:0.5"
+         x="55.090878"
+         y="113.67913">super-linear</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.9389px;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;text-align:center;text-anchor:middle;fill:#ff0000;stroke:none;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:4.99999;stroke-dashoffset:0"
+       x="57.245525"
+       y="119.54634"
+       id="text1524"
+       transform="rotate(-45)"><tspan
+         sodipodi:role="line"
+         id="tspan1522"
+         style="fill:#ff0000;stroke:none;stroke-width:0.5"
+         x="57.245525"
+         y="119.54634">sub-linear</tspan></text>
+    <path
+       style="fill:none;stroke:#ff2a2a;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="M 57.548253,105.53694 C 79.092137,87.996273 104.2733,73.845148 131.87801,67.190522"
+       id="path1460"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#0066ff;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="M 57.548253,105.53694 131.87801,31.207188"
+       id="path1236"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.9389px;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;text-align:center;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:4.99999;stroke-dashoffset:0"
+       x="122.97192"
+       y="110.90838"
+       id="text1586"><tspan
+         sodipodi:role="line"
+         id="tspan1584"
+         style="stroke:none;stroke-width:0.5"
+         x="122.97192"
+         y="110.90838">#Workers</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.9389px;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;text-align:center;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:4.99999;stroke-dashoffset:0"
+       x="-34.708729"
+       y="53.832588"
+       id="text1692"
+       transform="rotate(-90)"><tspan
+         sodipodi:role="line"
+         id="tspan1690"
+         style="stroke:none;stroke-width:0.5"
+         x="-34.708729"
+         y="53.832588">Speedup</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1.5;stroke-dashoffset:0"
+       d="M 94.71313,105.53694 V 53.575026"
+       id="path1748" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1.5;stroke-dashoffset:0"
+       d="M 94.71313,68.372063 H 57.548253"
+       id="path1752" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1.5;stroke-dashoffset:0"
+       d="M 94.71313,81.040501 H 57.548253"
+       id="path1754" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.93889px;font-family:sans;-inkscape-font-specification:sans;text-align:center;baseline-shift:baseline;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:4.99999;stroke-dashoffset:0"
+       x="51.303513"
+       y="55.059872"
+       id="text1758"><tspan
+         sodipodi:role="line"
+         id="tspan1756"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;baseline-shift:baseline;fill:#000000;stroke:none;stroke-width:0.5"
+         x="51.303513"
+         y="55.059872">S<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan1774">P</tspan>&gt;P</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1.5;stroke-dashoffset:0"
+       d="M 94.71313,53.555396 H 57.548253"
+       id="path1776" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.93889px;font-family:sans;-inkscape-font-specification:sans;text-align:center;baseline-shift:baseline;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:4.99999;stroke-dashoffset:0"
+       x="51.303513"
+       y="69.671288"
+       id="text1782"><tspan
+         sodipodi:role="line"
+         id="tspan1780"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;baseline-shift:baseline;fill:#000000;stroke:none;stroke-width:0.5"
+         x="51.303513"
+         y="69.671288">S<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan1810">P</tspan>=P</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.93889px;font-family:sans;-inkscape-font-specification:sans;text-align:center;baseline-shift:baseline;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:4.99999;stroke-dashoffset:0"
+       x="51.303513"
+       y="82.534554"
+       id="text1806"><tspan
+         sodipodi:role="line"
+         id="tspan1804"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;baseline-shift:baseline;fill:#000000;stroke:none;stroke-width:0.5"
+         x="51.303513"
+         y="82.534554">S<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan1808">P</tspan>&lt;P</tspan></text>
+  </g>
+</svg>
