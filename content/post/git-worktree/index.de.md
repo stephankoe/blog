@@ -63,6 +63,8 @@ git worktree remove ../project-1_branch-2
 Hier gibt man wiederum den Pfad zum zusaetzlichen Arbeitsverzeichnis an, in diesem Beispiel `../project-1_branch-2`. 
 Git wird daraufhin dieses Verzeichnis unwiderruflich loeschen, es sei denn, es gibt darin noch Aenderungen, die nicht committed worden sind.
 
+Es koennen ein Zweig zur gleichen Zeit nicht in mehreren Arbeitsverzeichnissen ausgecheckt werden.🚧
+
 Laut [Dokumentation](https://git-scm.com/docs/git-worktree) ist der `git worktree`-Befehl in der aktuellen Version 2.44.0 noch experimentell.
 Vor allem ist die Unterstuetzung von Submodulen noch nicht vollstaendig und es wird dazu geraten, bei "Superprojekten" diese Funktionalitaet nicht zu verwenden.
 
