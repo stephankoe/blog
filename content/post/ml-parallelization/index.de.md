@@ -131,7 +131,9 @@ Bei der Modellparallelisierung werden die Parameter des Modells auf verschiedene
 
 ### Pipeline-Parallelisierung
 
-Bei der Pipeline-Parallelisierung (PP) [@huangGPipeEfficientTraining2019; @narayananPipeDreamGeneralizedPipeline2019; @fanDAPPLEPipelinedData2020] wird das Modell in Abschnitte aufeinander folgender Operatoren zerteilt und diese Abschnitte verschiedenen Rechenknoten zugeordnet. Die Aktivierungen der einzelnen Abschnitte werden mittels Punkt-zu-Punkt-Kommunikation[^sendrecv] auf den Rechenknoten mit dem jeweils folgenden Abschnitt übertragen. Häufig wird das Modell entlang der Schichtengrenzen zerteilt, da das Kommunikationsvolumen hier üblicherweise gering ist. Pipeline-Parallelisierung ist analog zu einem bidirektionalen Staffellauf.
+Bei der Pipeline-Parallelisierung (PP) [@huangGPipeEfficientTraining2019; @narayananPipeDreamGeneralizedPipeline2019; @fanDAPPLEPipelinedData2020] wird das Modell in Abschnitte aufeinander folgender Operatoren zerteilt und diese Abschnitte verschiedenen Rechenknoten zugeordnet. Die Aktivierungen der einzelnen Abschnitte werden mittels Punkt-zu-Punkt-Kommunikation[^sendrecv] auf den Rechenknoten mit dem jeweils folgenden Abschnitt übertragen. Pipeline-Parallelisierung ist analog zu einem bidirektionalen Staffellauf.
+
+Bei der Aufteilung des Modells wird üblicherweise darauf geachtet, dass das Kommunikationsvolumen an den Schnittstellen zwischen zwei Abschnitten möglichst gering ist. Zudem ist eine gleichmäßige Berechnungszeit und Speicherbedarf pro Abschnitt von Vorteil [@miaoGalvatronEfficientTransformer2022]. Häufig wird das Modell entlang der Schichtengrenzen zerteilt, da das Kommunikationsvolumen hier üblicherweise gering ist.
 
 [^sendrecv]: Die zugehörigen Kommunikationsprimitive werden *Send* (senden) und *Recv* (receive, empfangen) genannt.
 
@@ -163,7 +165,7 @@ PipeDream [@narayananPipeDreamGeneralizedPipeline2019] erreicht neben der Speich
 [^1f1b]: 1F1B steht für "*one forward one backward*"
 [^activations]: Die Anzahl der nötigen Aktivierungen kann zwar mittels *Activation Checkpointing* reduziert werden, doch müssen die Eingabe-Aktivierungen jeder Modell-Partition weiterhin gespeichert werden. Daher bleibt der Speicheraufwand proportional zur Anzahl der Micro-Batches.
 
-Der verschachtelte (*interleaved*) 1F1B-Schedule [@narayananEfficientLargescaleLanguage2021] ist eine Optimierung des 1F1B-Schedules mit reduzierter Idle-Zeit. Diese Reduktion wird dadurch erreicht, dass ein Rechenknoten für mehrere nicht aufeinander folgende Partitionen des Modells zuständig ist (*model chunks*). Da die Partitionen des Modells nun kleiner sind, können sie schneller berechnet werden. Damit können die Micro-Batches schneller in die Pipelines eingegeben werden. Bei $v$ Modellpartitionen verringert sich die Bubble-Zeit um den Faktor $v$.
+Der verschachtelte (*interleaved*) 1F1B-Schedule [@narayananEfficientLargescaleLanguage2021] ist eine Optimierung des 1F1B-Schedules mit reduzierter Idle-Zeit. Diese Reduktion wird dadurch erreicht, dass ein Rechenknoten für mehrere nicht aufeinander folgende Partitionen des Modells zuständig ist (*model chunks*). Da die Partitionen des Modells nun kleiner sind, können sie schneller berechnet werden. Damit können die Micro-Batches schneller in die Pipelines eingegeben werden. Bei $v$ Modellpartitionen verringert sich die Bubble-Zeit um den Faktor $v$, d.h. die relative Bubble-Zeit sinkt proportional zur Anzahl der Modellpartitionen.
 
 ![](img/pp-1f1b-interleaved.svg)
 
@@ -186,9 +188,10 @@ Dadurch schaffen es die Autoren einen Pipeline-Schedule mit synchronen Parameter
 
 ![](img/pp-zero-bubble.svg)
 
-- Token-level parallelism: makes good use of the property of the transformer that long sequences require a longer time to compute [@liangSurveyAutoParallelismLargeScale2023]. Instead of feeding data in the unit of micro-batch to the pipeline, terapipe [@liTeraPipeTokenLevelPipeline2021] splits sequence data along the token axis (i.e., length axis) unevenly and then feeds them in the pipeline where each spit has a similar execution time, orthogonal to TP, helpful in large-scale language models
-- Optimize communication: Multiple streams to send/recv [@jiangMegaScaleScalingLarge2024]
-- Modellpartitionierung: Möglichst balanciert (Time, memory), geringes Kommunikationsvolumen (Aktivierungen)
+Pipeline-Parallelisierung kann auch auf Sequenzebene eingesetzt werden, was sich vor allem zur Anwendung von Transformer-Modellen auf langen Sequenzen eignet [@liangSurveyAutoParallelismLargeScale2023]. @liTeraPipeTokenLevelPipeline2021 stellen mit TeraPipe ein System vor, welches die Eingabedaten entlang der Sequenzdimension in Teilsequenzen ungleicher Länge aufteilt und nacheinander in das Modell eingibt. Bei der Aufteilung der Sequenzen wird darauf geachtet, dass jede Teilsequenz eine ähnliche Berechnungszeit benötigt. Wie auch die oben vorgestellte Pipeline-Parallelisierung auf Operator-Ebene ist der Ansatz von TeraPipe kompatibel mit Tensor-Parallelisierung.
+
+Auch wenn die durch Punkt-zu-Punkt-Kommunikation zwischen zwei Pipeline-Abschnitten auftretende Latenz im Vergleich zu anderen [Kommunikationsprimitiven](../kommunikationsmuster) relativ kurz ist, kann sie durch Überlappen mit der Berechnung "versteckt" werden. @jiangMegaScaleScalingLarge2024 steigen die Effizienz um XX%, indem sie für die Send- und Recv-Kommunikation sowie die Berechnung jeweils einen eigenen CUDA-Stream verwenden.
+
 - Übersicht: BUbble-Time, Speicher, Kommunikation, async [@liChimeraEfficientlyTraining2021]
 
 ### Tensor-Parallelisierung
