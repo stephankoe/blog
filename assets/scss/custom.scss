@@ -5,6 +5,11 @@
     --code-font-family: "Ubuntu Mono", monospace;
 }
 
+dd {
+    font-size: 0.9em;
+    font-style: italic;
+}
+
 /* Invert the colors of images in dark theme */
 
 html[data-scheme="dark"] img:not(.site-logo) {
