@@ -181,10 +181,10 @@ Bei der Rückwärtsberechnung werden die Ableitungen des Fehlers in Bezug auf di
 
 : Visualisierung der Vorwärts- und Rückwärtsberechnung. Bei der Rückwärtsberechnung werden jeweils die Ableitungen des Fehlers $E$ in Bezug auf die Parameter $\theta$ und die Aktivierungen $x$ berechnet. Dabei fällt auf, dass nur die Ableitungen in Bezug auf die Aktivierungen während der Rückwärtsberechnung benötigt werden. Die Ableitungen bezüglich der Parameter (Gradienten) werden erst bei der Parameteraktualisierung benötigt.
 
-Dadurch schaffen es die Autoren einen Pipeline-Schedule mit synchronen Parameterupdates zu kreieren, der in der Theorie keine Idle-Zeit beim Übergang zwischen den Mini-Batches aufweist. Durch die zusätzliche Kombination mit einem verschachtelten Schedule[^zero-pp-interleaved], dessen zweiter Teil entgegengesetzt zum ersten Teil verläuft🚧, stellen sie zudem sicher, dass die nur während der Rückwärtsberechnung benötigten Ableitungen bzgl. der Aktivierungen schneller wieder entfernt werden können[^zero-pp-aktiv]. In ihren Experimenten zeigen die Autoren, dass ihr Schedule einen bis zu XX% besseren Durchsatz als 1F1B erreicht.
+Dadurch schaffen es die Autoren einen Pipeline-Schedule[^zero-pp-sched] mit synchronen Parameterupdates zu kreieren, der in der Theorie keine Idle-Zeit beim Übergang zwischen den Mini-Batches aufweist. Durch die zusätzliche Kombination mit einem verschachtelten Schedule[^zero-pp-interleaved], dessen zweiter Teil entgegengesetzt zum ersten Teil verläuft🚧, stellen sie zudem sicher, dass die nur während der Rückwärtsberechnung benötigten Ableitungen bzgl. der Aktivierungen schneller wieder entfernt werden können. In ihren Experimenten zeigen die Autoren, dass ihr Schedule einen bis zu 23% besseren Durchsatz als 1F1B erreicht.
 
 [^zero-pp-interleaved]: Siehe *interleaved 1F1B*
-[^zero-pp-aktiv]: Die erste Iteration des bubble-freien Pipeline-Schedules erforderte einen Speicher von $O(2 p M_a)$, was einen Flaschenhals darstellen kann.
+[^zero-pp-sched]: Die Autoren stellen mehrere Pipeline-Schedules vor, die jeweils auf die Idee der Aufspaltung der Rückwärtsberechnung basieren. Hier stelle ich lediglich den speichereffizienten Schedule vor, da die anderen gegenüber dem speichereffizienten Schedule kaum Vorteile aufweisen.
 
 ![](img/pp-zero-bubble.svg)
 
@@ -192,7 +192,20 @@ Pipeline-Parallelisierung kann auch auf Sequenzebene eingesetzt werden, was sich
 
 Auch wenn die durch Punkt-zu-Punkt-Kommunikation zwischen zwei Pipeline-Abschnitten auftretende Latenz im Vergleich zu anderen [Kommunikationsprimitiven](../kommunikationsmuster) relativ kurz ist, kann sie durch Überlappen mit der Berechnung "versteckt" werden. @jiangMegaScaleScalingLarge2024 steigen die Effizienz um XX%, indem sie für die Send- und Recv-Kommunikation sowie die Berechnung jeweils einen eigenen CUDA-Stream verwenden.
 
-- Übersicht: BUbble-Time, Speicher, Kommunikation, async [@liChimeraEfficientlyTraining2021]
+Die folgende Tabelle gibt eine Übersicht über die Performance und den Speicherverbrauch verschiedener pipeline-paralleler Schedules nach @liChimeraEfficientlyTraining2021. $D$ ist der Grad der Pipeline-Parallelität (Anzahl der Modellabschnitte), $V$ die Anzahl an Abschnitten pro Rechenknoten, $N$ die Anzahl der Micro-Batches und $M_\theta$ und $M_a$ der für die Parameter und Aktivierungen benötigte Speicher.
+
+| Schedule         | Bubble-Ratio                                     | Parameter                                   | Aktivierungen                                                    | Konvergenz |
+|------------------|:------------------------------------------------:|:-------------------------------------------:|:----------------------------------------------------------------:|------------|
+| GPipe            | $\frac{D - 1}{N + D - 1}$                        | $M_\theta$                                  | $N \cdot M_a$                                                    | Sync       |
+| DAPPLE           | $\frac{D − 1}{N + D − 1}$                        | $M_\theta$                                  | $\left[ M_a, D \cdot M_a \right]$                                | Sync       |
+| PipeDream-Flush  | $\frac{D - 1}{N + D - 1}$                        | $M_\theta$                                  | $\left[M_a, D \cdot M_a \right]$                                 | Sync       |
+| PipeDream        | $\approx 0$                                      | $\left[ M_\theta, D \cdot M_\theta \right]$ | $\left[ M_a, D \cdot M_a \right]$                                | Async      |
+| PipeDream-2BW    | $\approx 0$                                      | $2 \cdot M_\theta$                          | $\left[ M_a, D \cdot M_a \right]$                                | Async      |
+| Interleaved 1F1B | $\frac{D - 1}{V \cdot \left( N + D - 1 \right)}$ | $M_\theta$                                  | $\left[ M_a, D \cdot M_a \right]$                                | Sync       |
+| Chimera          | $\frac{D - 2}{2 \cdot N + D - 2}$                | $2 \cdot M_\theta$                          | $\left[ \left( \frac{D}{2} + 1 \right) M_a, D \cdot M_a \right]$ | Sync       |
+| Zero Bubble      | $\approx 0$                                      | $M_\theta$                                  | $\left[ M_a, D \cdot M_a \right]$                                | Sync       |
+
+- Habe ich alle experimentell belegten Erfahrungen aus @narayananEfficientLargescaleLanguage2021 genannt? 🚧
 
 ### Tensor-Parallelisierung
 
