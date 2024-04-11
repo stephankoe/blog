@@ -25,6 +25,7 @@
 	{{- end -}}
 {{- end -}}
 
+{{- if $notSVG -}}
 <img src="{{ $Permalink }}"
 	{{ with $Width }}width="{{ . }}"{{ end }}
 	{{ with $Height }}height="{{ . }}"{{ end }}
@@ -42,3 +43,9 @@
 		data-flex-basis="{{ div (mul $image.Width 240) $image.Height }}px"
 	{{ end }}
 >
+{{- else -}}
+{{ 
+	replaceRE "(width|height)=\"([A-Za-z0-9,.-]*)?\"" "width=100%" $image.Content 2 
+	| safeHTML
+}}
+{{- end -}}
