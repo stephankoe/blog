@@ -7,7 +7,7 @@
 
 /* Invert the colors of images in dark theme */
 
-html[data-scheme="dark"] svg {
+html[data-scheme="dark"] svg.svg-diagram {
   filter: invert(73.828125%);
 }
 
