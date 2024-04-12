@@ -53,7 +53,7 @@ jobs:
         run: "[[ -f assets/bibliography.json ]] && find content/post -type f -iname '*.md' -exec preprocess-citations -i --bibliography=assets/bibliography.json {} \\; || echo 'No bibliography found'"
       - name: Compress SVGs
         run: |
-          find . -type f -iname '*.svg' -exec bash -c 'scour {} | svgo --multipass - -o {}.min' \;
+          find . -type f -iname '*.svg' -exec bash -c 'scour {} | svgo --multipass - -o {}.min' \; \
           && find . -type f -iname '*.svg.min' -exec sh -c 'for f; do mv "$f" "${f%.min}"; done' sh {} +
       - name: Build with Hugo
         env:
