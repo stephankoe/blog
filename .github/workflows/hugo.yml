@@ -34,7 +34,7 @@ jobs:
         run: sudo snap install dart-sass
       - name: Install compression dependencies
         run: |
-          sudo snap install svgo
+          sudo snap install svgo \
           && sudo apt install scour
       - name: Checkout
         uses: actions/checkout@v4
