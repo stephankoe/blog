@@ -183,8 +183,9 @@ dist.scatter(result, data)
 dim = 4
 data = [create_data(dim=dim) + i / dist.get_world_size()
         for i in range(dist.get_world_size())]
-result = [torch.zeros(dim)]
-dim.all_to_all(result, data)
+result = [torch.zero_like(array)
+          for array in data]
+dist.all_to_all(result, data)
 ```
 
 The method `dist.barrier()` blocks the running process until all processes arrived at the same location in their code.
