@@ -272,12 +272,11 @@ Um die Komplexität weiter zu reduzieren, wenden sie zudem einige Heuristiken an
 [^resharding]: *Resharding* bezeichnet eine Neuverteilung bereits verteilter Eingabematrizen, die aufgrund aufeinander folgender Operatoren mit verschiedenen Verteilungsstrategien nötig wird. Angenommen der Operator $o_{i-1}$ produziert eine Matrix, deren Reihen auf mehrere Rechenknoten verteilt sind, doch der Operator $o_i$ erwartet eine Matrix, deren Spalten auf mehrere Rechenknoten verteilt sind. Dann muss mittels einer [All-to-All](../communication-pattern/index.de.md)-Operation diese Matrix zunächst entsprechend der Eingabespezifikationen von $o_i$ neu verteilt werden.
 [^tensor]: Eingabe- und Ausgabetensoren sowie die Parameter der Operatoren
 
-@liuColossalAutoUnifiedAutomation2023 stellen mit ColossalAuto eine Strategie zur automatisierten Planung von Intra-Operator-Parallelisierung mit Activation Checkpointing vor. Sie bauen hierbei auf die Arbeit von Alpa auf, jedoch betrachten sie Inter-Operator-Parallelisierung nicht.
-
-- Galvatron-BMW 🚧
-- Übersicht 🚧
-- PipeDream [@narayananPipeDreamGeneralizedPipeline2019]: Planner für PP 🚧
-- DAPPLE [@fanDAPPLEPipelinedData2021]: Planner für PP 🚧
+- Granularität: Modell, Stage, Layer, Operator  🚧
+- Objekt: Device placement, PP schedule  🚧
+- Galvatron: Datenbasis besteht aus profile und simulation, hierarchisch, bsz, recomp, fsdp, TP, DP, PP, dynamic programming, extension: Galvatron-BMW for memory balanced pipeline parallelism 🚧
+- Aceso: iterative resource alleviation, operator-level, TP, DP, PP, recomp, bsz
+- Tessel: PP schedule
 
 ## TODO
 
