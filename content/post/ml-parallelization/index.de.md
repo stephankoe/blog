@@ -247,16 +247,19 @@ Im Gegensatz zu @liSequenceParallelismLong2022 und @liLightSeqSequenceLevel2023 
 
 @jacobsDeepSpeedUlyssesSystem2023 merken an, dass die Kommunikationskosten der Sequenz-Parallelisierung nach @liSequenceParallelismLong2022 und @korthikantiReducingActivationRecomputation2022 linear mit der Größe der Aktivierungen anwächst, was die Skalierung beeinträchtigt. Bei DeepSpeed Ulysses werden die Aktivierungen im gesamten Modell mit Ausnahme des Aufmerksamkeitsmoduls entlang der Sequenz-Dimension verteilt. Im Aufmerksamkeitsmodul werden die Aktivierungen hingegen entlang der Hidden-Dimension verteilt, wodurch die Aufmerksamkeitsköpfe parallel berechnet werden können. Die Dimensionen der Aktivierungen werden an den Schnittstellen zum Aufmerksamkeitsmodul mittels All-to-All-Operationen neu verteilt. Da die Kommunikationskosten bei $D$ Prozessoren und einer Nachrichtengröße von $M$ für ein All-to-All $\frac{M}{D}$ betragen, skaliert diese Methode um den Faktor $\frac{1}{D}$ besser als die oben genannten Methoden. Sie weisen experimentell eine starke Skalierung in der Sequenzlänge für ihre Methode nach. Ein weiterer Vorteil ist die Kompatibilität dieser Methode mit verschiedenen Berechnungsverfahren für die Aufmerksamkeit.
 
+## Expertenparallelisierung 🚧
+
+Ein "Mixture of Experts" (MoE) ist eine Architektur, bei der verschiedene spezialisierte Teilmodelle (die "Experten") parallel arbeiten und sich auf unterschiedliche Aspekte der Eingabedaten konzentrieren. Ein Gating-Mechanismus entscheidet, welche Experten für eine bestimmte Eingabe aktiviert werden, um die Effizienz und Leistung des Modells zu verbessern. Die Ausgaben der jeweiligen Experten werden anschließend gewichtet und summiert. Im Rahmen der Expertenparallelisierung werden diese Experten über mehrere Rechenknoten verteilt. Zur Verteilung der Tokens auf die Experten sowie zur Zusammenführung der Ergebnisse sind jeweils bei der Vorwärts- wie auch Rückwärtsberechnung vor und nach der Experten-Schicht jeweils All-to-All-Operationen vonnöten. Um den Effizienzverlust durch diese All-to-All-Kommunikationen auszugleichen, wurden bereits mehrere Methoden vorgeschlagen. @caiSurveyMixtureExperts2024 geben eine umfassende Übersicht über Mixture of Experts und Expertenparallelisierung.
+
+![Expertenparallelisierung](img/moe-parallel.svg)
+
+: Mixture of Experts in einem Transformer mit verteilten Experten (FFNs). Die Tokens werden bei der Vorwärts- wie auch Rückwärtsberechnung mittels jeweils einer All-to-All-Operation auf die Experten verteilt. Die Ergebnisse werden abschließend mittels einer weiteren All-to-All-Operation zusammengeführt.
+
 ## Hybride Parallelisierung
 
 - 3D CNN hybrid parallelism [@oyamaCaseStrongScaling2021 🚧
 - @narayananEfficientLargescaleLanguage2021 🚧
 - @hagemannEfficientParallelizationLayouts2023 🚧
-
-## Expertenparallelisierung 🚧
-
-Engl.: Expert parallelism, mixture of experts
-- @huangHarderTasksNeed2024
 
 ## Automatische Parallelisierung
 
@@ -286,4 +289,3 @@ Um die Komplexität weiter zu reduzieren, wenden sie zudem einige Heuristiken an
 ## Referenzen
 
 {{bibliography}}
-[^8]: 
