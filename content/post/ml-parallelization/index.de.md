@@ -257,9 +257,15 @@ Ein "Mixture of Experts" (MoE) ist eine Architektur, bei der verschiedene spezia
 
 ## Hybride Parallelisierung
 
-- 3D CNN hybrid parallelism [@oyamaCaseStrongScaling2021 🚧
-- @narayananEfficientLargescaleLanguage2021 🚧
-- @hagemannEfficientParallelizationLayouts2023 🚧
+Die vorangehend vorgestellten Formen der Parallelisierung können miteinander kombiniert werden. Bei einer Kombination von Daten-, Pipeline- und Tensorparallelisierung spricht man üblicherweise von 3D-Parallelisierung [@narayananEfficientLargescaleLanguage2021,@deepspeedteamDeepSpeedExtremescaleModel2020,@hagemannEfficientParallelizationLayouts2023]. Hierbei ist zu beachten, dass das Produkt der Dimensionen nicht die Anzahl verfügbarer Rechenknoten übersteigt. Bei der 3D-Parallelisierung gilt also:
+
+$$
+W = d * p * t,
+$$
+
+wobei $W$ die Anzahl der verfügbaren Rechenknoten (*world size*) bestimmt, $d$ die Anzahl datenparalleler Berechnungen, $p$ die Anzahl an Pipeline-Stages und $t$ die Anzahl der tensorparallelen Rechenknoten.
+
+ Die Kombination mehrerer Parallelisierungsformen ermöglicht das effiziente Training größerer Modelle. Als Faustregel gilt, dass eine Tensor- und Pipeline-Parallelisierung erst dann angewandt werden, wenn das gesamte Modell nicht auf einem einzelnen Rechenknoten berechnet werden kann, da die Datenparallelisierung durch die gleichzeitige Berechnung von mehreren Batches oft einen höheren Durchsatz hat. Die Tensor-Parallelisierung verringert die Größe der Modellparameter und Aktivierungen auf einem Rechenknoten, kann also den Speicherverbrauch erheblich reduzieren. Aufgrund des hohen Kommunikationsvolumens hingegen eignet sie sich jedoch nur für Rechenknoten mit bandbreitenstarken Verbindungen (z.B. NVLink). Die Pipeline-Parallelisierung kommt üblicherweise bei Verbindungen mit schwächeren Bandbreiten zum Einsatz, also wenn  z.B. die Rechenknoten per Ethernet oder InfiniBand miteinander kommunizieren. Um das Training von besonders langen Sequenzen zu ermöglichen, wird i.d.R. auf Sequenzparallelisierung zurückgegriffen. Bei mehreren Experten kann man darüber hinaus Expertenparallelisierung anwenden.
 
 ## Automatische Parallelisierung
 
