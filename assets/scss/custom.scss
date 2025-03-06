@@ -12,7 +12,7 @@ dd {
 
 /* Invert the colors of images in dark theme */
 
-html[data-scheme="dark"] img:not(.site-logo) {
+html[data-scheme="dark"] img.svg {
   filter: invert(73.828125%);
 }
 

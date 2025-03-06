@@ -32,6 +32,10 @@ jobs:
           && sudo dpkg -i ${{ runner.temp }}/hugo.deb
       - name: Install Dart Sass
         run: sudo snap install dart-sass
+      - name: Install compression dependencies
+        run: |
+          sudo snap install svgo \
+          && sudo apt install scour
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -47,6 +51,10 @@ jobs:
           && pip install ${{ runner.temp }}/markdown-preprocessor
       - name: Run Markdown preprocessor
         run: "[[ -f assets/bibliography.json ]] && find content/post -type f -iname '*.md' -exec preprocess-citations -i --bibliography=assets/bibliography.json {} \\; || echo 'No bibliography found'"
+      - name: Compress SVGs
+        run: |
+          find . -type f -iname '*.svg' -exec bash -c 'scour {} | svgo --multipass - -o {}.min' \; \
+          && find . -type f -iname '*.svg.min' -exec sh -c 'for f; do mv "$f" "${f%.min}"; done' sh {} +
       - name: Build with Hugo
         env:
           # For maximum backward compatibility with Hugo modules
